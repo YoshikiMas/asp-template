@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo gosu ssh \
     build-essential cmake clang \
     tmux byobu git curl wget vim tree htop zip unzip \
+    libopenblas-base libopenblas-dev liblapack-dev libatlas-base-dev\
+    libfftw3-dev libfftw3-doc \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -26,6 +28,33 @@ RUN conda init bash
 
 SHELL ["conda", "run", "-n", "py37asp", "/bin/bash", "-c"]
 
-RUN conda install numpy scipy pandas scikit-learn matplotlib jupyter
+RUN conda install -c conda-forge jupyter
+RUN conda install -c conda-forge tqdm
+RUN conda install -c conda-forge hydra-core
 
+RUN conda install -c conda-forge cmake
+RUN conda install -c conda-forge make
+RUN conda install -c conda-forge fftw
+RUN conda install -c conda-forge cython
+RUN conda install -c conda-forge six
+
+RUN conda install -c conda-forge nomkl
+RUN conda install -c conda-forge numpy
+RUN conda install -c conda-forge nomkl scipy
+RUN conda install -c conda-forge openblas
+RUN conda install -c conda-forge lapack
+
+RUN conda install -c conda-forge opt_einsum
+RUN conda install -c conda-forge scikit-learn
+RUN conda install -c conda-forge pandas
+RUN conda install -c conda-forge matplotlib
+RUN conda install -c conda-forge seaborn
+
+RUN conda install -c conda-forge pysoundfile
+RUN conda install -c conda-forge librosa
+
+RUN pip install pyroomacoustics
+RUN pip install cookiecutter
+RUN pip install ltfatpy
+RUN pip install museval
 
