@@ -25,33 +25,34 @@ ENV PATH /opt/miniconda3/bin:$PATH
 
 RUN conda create -n py37asp python==3.7
 RUN conda init bash
+RUN conda update -n base -c defaults conda
 
 SHELL ["conda", "run", "-n", "py37asp", "/bin/bash", "-c"]
 
-RUN conda install -c conda-forge jupyter
-RUN conda install -c conda-forge tqdm
-RUN conda install -c conda-forge hydra-core
+RUN conda install -y -c conda-forge notebook
+RUN conda install -y -c conda-forge tqdm
+RUN conda install -y -c conda-forge hydra-core
 
-RUN conda install -c conda-forge cmake
-RUN conda install -c conda-forge make
-RUN conda install -c conda-forge fftw
-RUN conda install -c conda-forge cython
-RUN conda install -c conda-forge six
+RUN conda install -y -c conda-forge cmake
+RUN conda install -y -c conda-forge make
+RUN conda install -y -c conda-forge fftw
+RUN conda install -y -c conda-forge cython
+RUN conda install -y -c conda-forge six
 
-RUN conda install -c conda-forge nomkl
-RUN conda install -c conda-forge numpy
-RUN conda install -c conda-forge nomkl scipy
-RUN conda install -c conda-forge openblas
-RUN conda install -c conda-forge lapack
+RUN conda install -y -c conda-forge nomkl
+RUN conda install -y -c conda-forge numpy
+RUN conda install -y -c conda-forge nomkl scipy
+RUN conda install -y -c conda-forge openblas
+RUN conda install -y -c conda-forge lapack
 
-RUN conda install -c conda-forge opt_einsum
-RUN conda install -c conda-forge scikit-learn
-RUN conda install -c conda-forge pandas
-RUN conda install -c conda-forge matplotlib
-RUN conda install -c conda-forge seaborn
+RUN conda install -y -c conda-forge opt_einsum
+RUN conda install -y -c conda-forge scikit-learn
+RUN conda install -y -c conda-forge pandas
+RUN conda install -y -c conda-forge matplotlib
+RUN conda install -y -c conda-forge seaborn
 
-RUN conda install -c conda-forge pysoundfile
-RUN conda install -c conda-forge librosa
+RUN conda install -y -c conda-forge pysoundfile
+RUN conda install -y -c conda-forge librosa
 
 RUN pip install pyroomacoustics
 RUN pip install cookiecutter
