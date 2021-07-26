@@ -4,7 +4,7 @@ HOST_PATH = '/home/$(USER_NAME)'
 CONTAINER_PATH = '/home/$(USER_NAME)'
 ROOT_PASSWORD = 'password'
 IMAGE_TAG = 'ymasuyama/asp-template'
-EXPOSED_PORT = 9999
+EXPOSED_PORT = 8888
 
 all: ## build & run docker.
 	@make build
