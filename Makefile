@@ -4,7 +4,7 @@ HOST_PATH = '/home/$(USER_NAME)'
 CONTAINER_PATH = '/home/$(USER_NAME)'
 ROOT_PASSWORD = 'password'
 IMAGE_TAG = 'ymasuyama/asp-template'
-EXPOSED_PORT = 8888
+EXPOSED_PORT = 9999
 
 all: ## build & run docker.
 	@make build
@@ -17,7 +17,7 @@ run: ## run docker.
 	docker run -it \
 	-e USER_NAME=$(USER_NAME) -e GROUP_NAME=$(GROUP_NAME) \
 	-e LOCAL_UID=$(shell id -u $(USER)) -e LOCAL_GID=$(shell id -g $(USER)) \
-	-p $(EXPOSED_PORT):$(EXPOSED_PORT) \
+	-p $(EXPOSED_PORT):8888 \
 	-v $(HOST_PATH):$(CONTAINER_PATH) \
 	-w $(CONTAINER_PATH) \
 	$(IMAGE_TAG) /bin/bash

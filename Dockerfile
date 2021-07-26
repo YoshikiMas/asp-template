@@ -23,13 +23,13 @@ RUN sh /opt/Miniconda3-py39_4.9.2-Linux-x86_64.sh -b -p /opt/miniconda3 && \
     
 ENV PATH /opt/miniconda3/bin:$PATH
 
+RUN conda update -n base -c defaults conda
 RUN conda create -n py37asp python==3.7
 RUN conda init bash
-RUN conda update -n base -c defaults conda
 
 SHELL ["conda", "run", "-n", "py37asp", "/bin/bash", "-c"]
 
-RUN conda install -y -c conda-forge notebook
+RUN conda install -y -c conda-forge jupyterlab
 RUN conda install -y -c conda-forge tqdm
 RUN conda install -y -c conda-forge hydra-core
 
@@ -41,7 +41,7 @@ RUN conda install -y -c conda-forge six
 
 RUN conda install -y -c conda-forge nomkl
 RUN conda install -y -c conda-forge numpy
-RUN conda install -y -c conda-forge nomkl scipy
+RUN conda install -y -c conda-forge scipy
 RUN conda install -y -c conda-forge openblas
 RUN conda install -y -c conda-forge lapack
 
@@ -53,6 +53,7 @@ RUN conda install -y -c conda-forge seaborn
 
 RUN conda install -y -c conda-forge pysoundfile
 RUN conda install -y -c conda-forge librosa
+RUN conda install -y -c conda-forge chebfun
 
 RUN pip install pyroomacoustics
 RUN pip install cookiecutter
