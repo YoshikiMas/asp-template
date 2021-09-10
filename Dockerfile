@@ -53,7 +53,8 @@ RUN conda install -y -c conda-forge seaborn
 
 RUN conda install -y -c conda-forge pysoundfile
 RUN conda install -y -c conda-forge librosa
-RUN conda install -y -c conda-forge chebfun
+RUN conda install -y -c conda-forge cmaes
+RUN conda install -y -c conda-forge optuna
 
 RUN pip install pyroomacoustics
 RUN pip install cookiecutter
