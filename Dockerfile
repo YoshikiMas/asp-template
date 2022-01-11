@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tmux byobu git curl wget vim tree htop zip unzip \
     libopenblas-base libopenblas-dev liblapack-dev libatlas-base-dev\
     libfftw3-dev libfftw3-doc \
+    libgl1-mesa-glx libglib2.0-0 libsm6 libxrender1 libxext6 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -45,9 +46,12 @@ RUN conda install -y -c conda-forge pysoundfile=0.10.3.post1
 RUN conda install -y -c conda-forge librosa=0.8.1
 RUN conda install -y -c conda-forge hydra-core=1.0.6
 RUN conda install -y -c conda-forge optuna=2.9.1
+RUN conda install -y -c plotly plotly=4.0.0
 
-RUN pip install pyroomacoustics==0.4.3
-RUN pip install cookiecutter==1.7.3
+RUN pip install --no-cache-dir pyroomacoustics==0.4.3
+RUN pip install --no-cache-dir cookiecutter==1.7.3
+RUN pip install --no-cache-dir museval==0.4.0
+RUN pip install --no-cache-dir nara-wpe==0.0.7
 
 # User Setting
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
