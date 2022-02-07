@@ -25,33 +25,35 @@ RUN sh /opt/Miniconda3-py39_4.9.2-Linux-x86_64.sh -b -p /opt/miniconda3 && \
 ENV PATH /opt/miniconda3/bin:$PATH
 
 RUN conda update -n base -c defaults conda
-RUN conda create -n py37asp python==3.7
+RUN conda create -n py39asp python==3.9
 RUN conda init bash
 
-SHELL ["conda", "run", "-n", "py37asp", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "py39asp", "/bin/bash", "-c"]
 
-RUN conda install -y -c conda-forge jupyterlab=3.0.16
+RUN conda install -y -c conda-forge jupyterlab=3.2.6
 
-RUN conda install -y -c intel cython=0.29.23
-RUN conda install -y -c intel numpy=1.20.3
-RUN conda install -y -c intel scipy=1.6.2
-RUN conda install -y -c intel opt_einsum=3.3.0
-RUN conda install -y -c intel scikit-learn=0.24.2
-RUN conda install -y -c intel pandas=1.2.0
-RUN conda install -y -c intel matplotlib=3.1.2
-RUN conda install -y -c intel tqdm=4.60.0
+RUN conda install -y -c conda-forge cython=0.29.26
+RUN conda install -y -c conda-forge numpy=1.22.0
+RUN conda install -y -c conda-forge scipy=1.7.3
+RUN conda install -y -c conda-forge opt_einsum=3.3.0
+RUN conda install -y -c conda-forge scikit-learn=1.0.2
+RUN conda install -y -c conda-forge pandas=1.3.5
+RUN conda install -y -c conda-forge matplotlib=3.5.1
+RUN conda install -y -c conda-forge tqdm=4.62.3
 
 RUN conda install -y -c conda-forge seaborn=0.11.1
 RUN conda install -y -c conda-forge pysoundfile=0.10.3.post1
 RUN conda install -y -c conda-forge librosa=0.8.1
 RUN conda install -y -c conda-forge hydra-core=1.0.6
 RUN conda install -y -c conda-forge optuna=2.9.1
-RUN conda install -y -c plotly plotly=4.0.0
+RUN conda install -y -c conda-forge pylint=2.7.2
 
 RUN pip install --no-cache-dir pyroomacoustics==0.4.3
 RUN pip install --no-cache-dir cookiecutter==1.7.3
 RUN pip install --no-cache-dir museval==0.4.0
 RUN pip install --no-cache-dir nara-wpe==0.0.7
+RUN pip install --no-cache-dir pesq
+RUN pip install --no-cache-dir pystoi
 
 # User Setting
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
