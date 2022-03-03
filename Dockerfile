@@ -1,16 +1,27 @@
 FROM ubuntu:18.04
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV TZ=Asia/Tokyo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo gosu ssh \
-    build-essential cmake clang \
+    build-essential ca-certificates cmake clang \
     tmux byobu git curl wget vim tree htop zip unzip \
     libopenblas-base libopenblas-dev liblapack-dev libatlas-base-dev\
     libfftw3-dev libfftw3-doc \
     libgl1-mesa-glx libglib2.0-0 libsm6 libxrender1 libxext6 \
+    git \
+    git-lfs \
+    software-properties-common \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN add-apt-repository ppa:git-core/ppa -y && \
+    apt update && \
+    apt install -y --no-install-recommends git-all && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ARG ROOT_PASSWORD="password"
 RUN echo "root:$ROOT_PASSWORD" | chpasswd

@@ -20,6 +20,7 @@ run: ## run docker.
 	-p $(EXPOSED_PORT):8888 \
 	-v $(HOST_PATH):$(CONTAINER_PATH) \
 	-w $(CONTAINER_PATH) \
+	-m 192gb \
 	$(IMAGE_TAG) /bin/bash
 
 connect: ## connect newest container
